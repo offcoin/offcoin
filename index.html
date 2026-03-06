@@ -695,19 +695,29 @@
   }
 
   /* TESTIMONIAL CAROUSEL */
-  .testimonials-section { position:relative;z-index:1;padding:0 48px 100px;max-width:1100px;margin:0 auto; }
-  .carousel-wrap { overflow:hidden; position:relative; }
+  .testimonials-section { position:relative;z-index:1;padding:0 0 100px;max-width:1100px;margin:0 auto; }
+  .testimonials-section .section-label,
+  .testimonials-section .section-title { padding:0 48px; }
+  .carousel-wrap {
+    overflow-x:auto !important; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none; -ms-overflow-style:none;
+    padding:4px 48px 16px;
+    cursor:grab;
+  }
+  .carousel-wrap::-webkit-scrollbar { display:none; }
+  .carousel-wrap:active { cursor:grabbing; }
   .carousel-track {
     display:flex; gap:16px;
-    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-    cursor:grab; user-select:none;
+    width:max-content;
   }
-  .carousel-track:active { cursor:grabbing; }
   .testimonial-card {
     background:#fff; border:1px solid rgba(0,0,0,0.05); border-radius:24px;
-    padding:32px 28px; min-width:300px; max-width:300px;
-    box-shadow:0 4px 24px rgba(0,0,0,0.05); flex-shrink:0;
+    padding:32px 28px; width:300px; flex-shrink:0;
+    box-shadow:0 4px 24px rgba(0,0,0,0.05);
     position:relative; overflow:hidden; display:flex; flex-direction:column;
+    scroll-snap-align:start;
   }
   .testimonial-card::before {
     content:''; position:absolute; top:0; left:0; right:0; height:3px;
@@ -725,8 +735,9 @@
   .carousel-dot { width:6px;height:6px;border-radius:50%;background:#ddd;cursor:pointer;transition:all 0.25s; }
   .carousel-dot.active { background:#85cc85;width:20px;border-radius:3px; }
   @media(max-width:768px){
-    .testimonials-section{padding-left:20px;padding-right:20px;}
-    .testimonial-card{min-width:260px;max-width:260px;}
+    .testimonials-section .section-label, .testimonials-section .section-title{padding:0 20px;}
+    .carousel-wrap{padding:4px 20px 16px;}
+    .testimonial-card{width:260px;}
   }
 
   /* TOKEN CHART */
@@ -809,11 +820,11 @@
     -webkit-overflow-scrolling:touch;
     scroll-snap-type:x mandatory;
     scrollbar-width:none; -ms-overflow-style:none;
-    padding:0 48px 16px;
+    padding:4px 48px 20px;
   }
   .partners-carousel-wrap::-webkit-scrollbar { display:none; }
   .partners-carousel-track {
-    display:flex; gap:12px; width:max-content;
+    display:flex; gap:12px; width:max-content; align-items:stretch;
   }
   .partner-card {
     width:180px; flex-shrink:0;
@@ -1018,8 +1029,6 @@
       <div class="stat-lbl">$OFF reserved</div>
     </div>
       </div>
-  </div>
-  <button class="carousel-arrow carousel-arrow-right" onclick="scrollPartners(1)">&#8594;</button>
 </div>
 </section>
 
@@ -1073,9 +1082,7 @@
       </div>
   </div>
 
-    <div class="partners-carousel-outer">
-  <button class="carousel-arrow carousel-arrow-left" onclick="scrollPartners(-1)">&#8592;</button>
-  <div class="partners-carousel-wrap" id="partnersWrap">
+    <div class="partners-carousel-wrap" id="partnersWrap">
     <div class="partners-carousel-track">
     
     <div class="partner-card c1">
@@ -1169,8 +1176,6 @@
     BETA USERS
   </div>
   <h2 class="section-title" style="margin-bottom:40px;">PEOPLE ARE<br><em style="color:#999;font-style:normal;">ALREADY LOVING IT.</em></h2>
-  <div class="carousel-outer">
-  <button class="carousel-arrow carousel-arrow-left" onclick="scrollCarousel(-1)">&#8592;</button>
   <div class="carousel-wrap" id="carouselWrap">
     <div class="carousel-track" id="carouselTrack">
 
@@ -1237,9 +1242,7 @@
         </div>
       </div>
 
-        </div>
-  </div>
-  <button class="carousel-arrow carousel-arrow-right" onclick="scrollCarousel(1)">&#8594;</button>
+      </div>
 </div>
 <div class="carousel-dots" id="carouselDots">
     <div class="carousel-dot active" onclick="goToSlide(0)"></div>
