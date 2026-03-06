@@ -394,16 +394,17 @@
 
   /* PARTNERS GRID */
   .partners-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
   }
 
   .partner-card {
-    padding: 28px 24px;
+    padding: 20px 16px;
     background: #ffffff;
     border: 1px solid rgba(40,100,40,0.08);
     border-radius: 16px; position: relative; overflow: hidden;
     transition: all 0.25s;
     box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column;
   }
   .partner-card:hover { border-color: rgba(74,158,74,0.2); transform: translateY(-2px); }
   .partner-card::before {
@@ -423,7 +424,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px; letter-spacing: 2px; color: #fff; margin-bottom: 6px;
   }
-  .partner-desc { font-size: 10px; color: #aaa; letter-spacing: 1px; line-height: 1.8; text-transform: uppercase; }
+  .partner-desc { font-size: 9px; color: #aaa; letter-spacing: 0.5px; line-height: 1.6; text-transform: uppercase; }
   .partner-reward {
     margin-top: 16px; padding-top: 16px;
     border-top: 1px solid rgba(74,158,74,0.08);
@@ -447,11 +448,12 @@
 
   .manifesto-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 5vw, 60px);
-    letter-spacing: 3px; line-height: 1.2;
+    font-size: clamp(26px, 5vw, 60px);
+    letter-spacing: 2px; line-height: 1.25;
     color: rgba(0,0,0,0.1);
     max-width: 900px; margin: 0 auto 60px;
     position: relative; z-index: 1;
+    text-align: center; padding: 0 16px;
   }
   .manifesto-text .lit {
     color: #333;
@@ -557,7 +559,9 @@
     .step:first-child { border-radius: 20px 20px 0 0; }
     .step:last-child { border-radius: 0 0 20px 20px; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
-    .partners-grid { grid-template-columns: 1fr 1fr; }
+    .partners-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .partner-card { padding: 14px 12px; }
+    .partner-desc { font-size: 8px; letter-spacing: 0; }
     .section { padding: 80px 24px; }
     .stats-bar, .partners-section, .final-cta { padding-left: 24px; padding-right: 24px; }
     footer { flex-direction: column; gap: 20px; text-align: center; }
@@ -641,12 +645,12 @@
   /* LIVE COUNTER */
   .live-counter-section{position:relative;z-index:1;padding:80px 48px;max-width:1100px;margin:0 auto;text-align:center;}
   .counter-grid{display:grid;grid-template-columns:repeat(3,1fr);border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);box-shadow:0 2px 24px rgba(0,0,0,0.04);}
-  .counter-item{background:#fff;padding:48px 32px;border-right:1px solid rgba(0,0,0,0.05);transition:background 0.3s;}
+  .counter-item{background:#fff;padding:40px 16px;border-right:1px solid rgba(0,0,0,0.05);transition:background 0.3s;text-align:center;}
   .counter-item:last-child{border-right:none;}
   .counter-item:hover{background:#fafafa;}
   .counter-live-dot{width:7px;height:7px;border-radius:50%;background:#bbb;margin:0 auto 16px;animation:pulse 2s ease-in-out infinite;}
-  .counter-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:#333;letter-spacing:2px;line-height:1;margin-bottom:8px;}
-  .counter-lbl{font-size:10px;color:#bbb;letter-spacing:2.5px;text-transform:uppercase;}
+  .counter-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,64px);color:#333;letter-spacing:1px;line-height:1;margin-bottom:8px;}
+  .counter-lbl{font-size:clamp(7px,1.5vw,10px);color:#bbb;letter-spacing:1.5px;text-transform:uppercase;line-height:1.4;}
 
   /* TESTIMONIAL CAROUSEL */
   .testimonials-section { position:relative;z-index:1;padding:0 48px 100px;max-width:1100px;margin:0 auto; }
@@ -691,6 +695,34 @@
   .chart-change{font-size:12px;color:#aaa;letter-spacing:1px;margin-top:4px;font-family:'DM Mono',monospace;}
   .chart-tag{background:#f5f5f5;border:1px solid #eee;border-radius:20px;padding:8px 16px;font-size:9px;color:#bbb;letter-spacing:2px;text-transform:uppercase;}
   .chart-labels{display:flex;justify-content:space-between;margin-top:12px;font-size:9px;color:#ccc;letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;}
+
+
+  /* PARTNER CARD REDESIGN */
+  .partner-wordmark {
+    margin-bottom: 12px;
+    height: 28px; display:flex; align-items:center;
+  }
+  .partner-hook {
+    font-size: 10px; color: #888; letter-spacing: 0.3px;
+    line-height: 1.6; margin-bottom: 14px;
+    font-family: 'DM Mono', monospace; text-transform: none;
+    flex: 1;
+  }
+  .partner-reward-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 3.5vw, 28px);
+    color: #222; letter-spacing: 1px; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .partner-cost {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: #85cc85; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  @media(max-width:768px) {
+    .partner-hook { font-size: 9px; }
+    .partner-reward-big { font-size: 20px; }
+  }
 
 </style>
 </head>
@@ -862,7 +894,7 @@
     </div>
     <div class="counter-item">
       <div class="counter-live-dot" style="animation-delay:1s"></div>
-      <div class="counter-num" id="liveTokens">0<span style="font-size:40px;color:#bbb;">K</span></div>
+      <div class="counter-num" id="liveTokens">0<span id="kSuffix" style="font-size:0.38em;color:#bbb;vertical-align:3px;letter-spacing:0;">K</span></div>
       <div class="counter-lbl">$OFF tokens reserved</div>
     </div>
   </div>
@@ -918,114 +950,87 @@
       </div>
   </div>
 
-  <div class="partners-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="partners-grid" style="grid-template-columns:repeat(3,1fr);">
     
     <div class="partner-card c1">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <path d="M8 24 Q14 16 20 24 Q26 32 32 24" stroke="#bbb" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M8 20 Q14 12 20 20 Q26 28 32 20" stroke="#ccc" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M8 28 Q14 20 20 28 Q26 36 32 28" stroke="#ddd" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 80 28" width="80" height="28"><text x="0" y="22" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#333" letter-spacing="-0.5">calm</text></svg>
       </div>
-      <div class="partner-name">CALM</div>
-      <div class="partner-desc">Guided meditations &amp;<br>sleep stories premium</div>
-      <div class="partner-reward">3 MONTHS FREE — 8 $OFF</div>
+      <div class="partner-hook">Sleep like you did at 10.</div>
+      <div class="partner-reward-big">3 MONTHS<br>FREE</div>
+      <div class="partner-cost">8 $OFF</div>
     </div>
     
     <div class="partner-card c2">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <circle cx="20" cy="20" r="11" stroke="#bbb" stroke-width="3" fill="none"/><circle cx="20" cy="20" r="6" stroke="#ddd" stroke-width="2" fill="none"/><circle cx="20" cy="9" r="2.5" fill="#aaa"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 90 28" width="90" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="16" font-weight="300" fill="#333" letter-spacing="2">OURA</text></svg>
       </div>
-      <div class="partner-name">OURA RING</div>
-      <div class="partner-desc">Sleep &amp; readiness tracker<br>membership discount</div>
-      <div class="partner-reward">$50 CREDIT — 15 $OFF</div>
+      <div class="partner-hook">Know your body better than your doctor.</div>
+      <div class="partner-reward-big">$50<br>CREDIT</div>
+      <div class="partner-cost">15 $OFF</div>
     </div>
     
     <div class="partner-card c3">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <rect x="13" y="8" width="14" height="24" rx="6" stroke="#bbb" stroke-width="2.5" fill="none"/><rect x="16" y="17" width="8" height="6" rx="2" fill="#ddd"/><line x1="13" y1="21" x2="7" y2="21" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="21" x2="33" y2="21" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 90 28" width="90" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="16" font-weight="800" fill="#333" letter-spacing="1">WHOOP</text></svg>
       </div>
-      <div class="partner-name">WHOOP</div>
-      <div class="partner-desc">Recovery &amp; strain wearable<br>3-month free membership</div>
-      <div class="partner-reward">FREE TRIAL — 20 $OFF</div>
+      <div class="partner-hook">Recover faster. Live longer.</div>
+      <div class="partner-reward-big">3 MONTHS<br>FREE</div>
+      <div class="partner-cost">20 $OFF</div>
     </div>
     
     <div class="partner-card c4">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <rect x="6" y="18" width="28" height="12" rx="3" fill="#ddd"/><rect x="8" y="14" width="10" height="8" rx="2" fill="#ccc"/><rect x="22" y="14" width="10" height="8" rx="2" fill="#ccc"/><line x1="6" y1="30" x2="6" y2="34" stroke="#bbb" stroke-width="2.5" stroke-linecap="round"/><line x1="34" y1="30" x2="34" y2="34" stroke="#bbb" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 110 28" width="110" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="13" font-weight="300" fill="#333" letter-spacing="2">EIGHT SLEEP</text></svg>
       </div>
-      <div class="partner-name">EIGHT SLEEP</div>
-      <div class="partner-desc">Smart mattress cover<br>for optimal sleep</div>
-      <div class="partner-reward">$100 OFF — 25 $OFF</div>
+      <div class="partner-hook">1/3 of your life. Make it perfect.</div>
+      <div class="partner-reward-big">$150<br>OFF</div>
+      <div class="partner-cost">40 $OFF</div>
     </div>
     
     <div class="partner-card c5">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <circle cx="20" cy="13" r="5" fill="#ccc"/><path d="M12 28 Q12 22 20 22 Q28 22 28 28" stroke="#bbb" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M8 30 Q14 26 20 28 Q26 26 32 30" stroke="#ddd" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 110 28" width="110" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="14" font-weight="400" fill="#f47b20" letter-spacing="0.5">Headspace</text></svg>
       </div>
-      <div class="partner-name">HEADSPACE</div>
-      <div class="partner-desc">Mindfulness &amp; focus<br>premium access</div>
-      <div class="partner-reward">3 MONTHS FREE — 10 $OFF</div>
+      <div class="partner-hook">10 minutes that change everything.</div>
+      <div class="partner-reward-big">3 MONTHS<br>FREE</div>
+      <div class="partner-cost">10 $OFF</div>
     </div>
     
     <div class="partner-card c6">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <path d="M20 8 L30 18 H10 Z" fill="#ddd"/><rect x="14" y="18" width="12" height="14" rx="1" fill="#ccc"/><rect x="17" y="24" width="6" height="8" rx="1" fill="#ebebeb"/><circle cx="20" cy="14" r="2" fill="#ebebeb"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 80 28" width="80" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="18" font-weight="800" fill="#FF385C" letter-spacing="-0.5">airbnb</text></svg>
       </div>
-      <div class="partner-name">AIRBNB</div>
-      <div class="partner-desc">Digital detox stays<br>worldwide credit</div>
-      <div class="partner-reward">$50 CREDIT — 18 $OFF</div>
+      <div class="partner-hook">A weekend with zero notifications.</div>
+      <div class="partner-reward-big">$100<br>STAY</div>
+      <div class="partner-cost">30 $OFF</div>
     </div>
     
     <div class="partner-card c1">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <path d="M20 8 L28 20 H12 Z" fill="#ccc"/><path d="M20 14 L30 26 H10 Z" fill="#bbb"/><rect x="17" y="26" width="6" height="6" rx="1" fill="#ccc"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 90 28" width="90" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="14" font-weight="600" fill="#4CAF50" letter-spacing="0.5">Forest App</text></svg>
       </div>
-      <div class="partner-name">FOREST APP</div>
-      <div class="partner-desc">Stay focused, grow<br>virtual trees offline</div>
-      <div class="partner-reward">1 YEAR PRO — 5 $OFF</div>
+      <div class="partner-hook">Grow real trees by staying offline.</div>
+      <div class="partner-reward-big">1 YEAR<br>PRO</div>
+      <div class="partner-cost">5 $OFF</div>
     </div>
     
     <div class="partner-card c2">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <circle cx="20" cy="20" r="7" stroke="#bbb" stroke-width="2.5" fill="none"/><line x1="20" y1="8" x2="20" y2="11" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="29" x2="20" y2="32" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="20" x2="11" y2="20" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><line x1="29" y1="20" x2="32" y2="20" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="20" r="3" fill="#ddd"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 110 28" width="110" height="28"><text x="0" y="21" font-family="Georgia,serif" font-size="14" font-weight="400" fill="#333" letter-spacing="0.5">Waking Up</text></svg>
       </div>
-      <div class="partner-name">WAKING UP</div>
-      <div class="partner-desc">Sam Harris meditation<br>annual subscription</div>
-      <div class="partner-reward">1 YEAR FREE — 22 $OFF</div>
+      <div class="partner-hook">The meditation app that actually works.</div>
+      <div class="partner-reward-big">1 YEAR<br>FREE</div>
+      <div class="partner-cost">22 $OFF</div>
     </div>
     
     <div class="partner-card c3">
-      <div class="partner-emoji">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="#f5f5f5"/>
-          <path d="M6 20 L10 20 L13 12 L17 28 L21 16 L24 24 L27 20 L34 20" stroke="#bbb" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="partner-wordmark">
+        <svg viewBox="0 0 110 28" width="110" height="28"><text x="0" y="21" font-family="'Helvetica Neue',sans-serif" font-size="14" font-weight="700" fill="#333" letter-spacing="1">THERABODY</text></svg>
       </div>
-      <div class="partner-name">THERABODY</div>
-      <div class="partner-desc">Recovery tools &amp;<br>percussive therapy</div>
-      <div class="partner-reward">15% OFF — 12 $OFF</div>
+      <div class="partner-hook">Recovery tools used by athletes.</div>
+      <div class="partner-reward-big">15%<br>OFF</div>
+      <div class="partner-cost">12 $OFF</div>
     </div>
 
     </div>
@@ -1399,6 +1404,35 @@
       if(diff>50) goToSlide(startPos+1); else if(diff<-50) goToSlide(startPos-1); else goToSlide(startPos);
     });
     setInterval(function(){ goToSlide((carouselPos+1)%7); }, 5000);
+  })();
+
+
+  /* SLOW WAITLIST COUNTER */
+  (function() {
+    var base = 2847;
+    var current = base;
+    var el = document.getElementById('counter');
+    if (!el) return;
+
+    function fmt(n) { return n.toLocaleString('en-US'); }
+    el.textContent = fmt(current);
+
+    // Random increment: +1 every 25-90 seconds
+    function scheduleNext() {
+      var delay = 25000 + Math.random() * 65000;
+      setTimeout(function() {
+        current += 1;
+        // Animate the number briefly
+        el.style.transition = 'opacity 0.3s';
+        el.style.opacity = '0.4';
+        setTimeout(function() {
+          el.textContent = fmt(current);
+          el.style.opacity = '1';
+        }, 300);
+        scheduleNext();
+      }, delay);
+    }
+    scheduleNext();
   })();
 
 </script>
