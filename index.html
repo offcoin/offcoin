@@ -878,13 +878,12 @@
 
   .hero-earn {
     font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 12px);
-    color: #666; letter-spacing: 2.5px;
+    font-size: 10px; color: #bbb; letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    max-width: 440px;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
   }
-  .hero-earn strong { color: #85cc85; font-weight: 700; }
+  .hero-earn strong { color: #888; font-weight: bold; }
 
 
   .urgency-row { display: none; }
@@ -1182,8 +1181,8 @@
       ✓ &nbsp; YOU'RE IN. WE'LL BE IN TOUCH SOON.
     </div>
     <div class="urgency-row"></div>
-    <p class="waitlist-count" style="margin-bottom:16px;">JOIN <span id="counter">330</span> PEOPLE ALREADY ON THE LIST</p>
-    <div class="hero-earn" style="margin-bottom:60px;">Earn <strong>50 $OFF</strong> just by joining the OffCoin community.</div>
+    <div class="hero-earn" style="margin-top:16px; margin-bottom:16px;">Earn <strong>50 $OFF</strong> just by joining the OffCoin community.</div>
+    <p class="waitlist-count" style="margin-bottom:60px;">JOIN <span id="counter">335</span> PEOPLE ALREADY ON THE LIST</p>
   </div>
 
   <div class="scroll-hint">
@@ -1876,7 +1875,7 @@
   });
 
   /* WAITLIST */
-  let count = 330;
+  let count = 335;
 
   async function joinWaitlist(inputId, formId, successId) {
     const input = document.getElementById(inputId);
@@ -1907,12 +1906,33 @@
         document.getElementById(successId).style.display = 'block';
         count++;
         const counter = document.getElementById('counter');
-        if (counter) counter.textContent = count.toLocaleString();
+        if (counter) {
+          counter.style.transition = 'opacity 0.2s, transform 0.2s';
+          counter.style.opacity = '0';
+          counter.style.transform = 'translateY(-8px) scale(1.15)';
+          setTimeout(() => {
+            counter.textContent = count.toLocaleString();
+            counter.style.opacity = '1';
+            counter.style.transform = 'translateY(0) scale(1)';
+          }, 220);
+        }
       } else {
         // Still show success to user but log error
         console.error('Sender API error:', response.status);
         document.getElementById(formId).style.display = 'none';
         document.getElementById(successId).style.display = 'block';
+        count++;
+        const counter2 = document.getElementById('counter');
+        if (counter2) {
+          counter2.style.transition = 'opacity 0.2s, transform 0.2s';
+          counter2.style.opacity = '0';
+          counter2.style.transform = 'translateY(-8px) scale(1.15)';
+          setTimeout(() => {
+            counter2.textContent = count.toLocaleString();
+            counter2.style.opacity = '1';
+            counter2.style.transform = 'translateY(0) scale(1)';
+          }, 220);
+        }
       }
     } catch (err) {
       console.error('Network error:', err);
@@ -1940,7 +1960,7 @@
     }, step);
   }
 
-  setTimeout(() => animateCounter(document.getElementById('counter'), 330, 2000), 1200);
+  setTimeout(() => animateCounter(document.getElementById('counter'), 335, 2000), 1200);
 
   /* SMOOTH SCROLL */
   var navCta = document.getElementById('navCta');
@@ -2344,31 +2364,11 @@
   })();
 
 
+  // Counter initialised — grows only when someone joins
   (function() {
-    var base = 330;
-    var current = base;
     var el = document.getElementById('counter');
     if (!el) return;
-
-    function fmt(n) { return n.toLocaleString('en-US'); }
-    el.textContent = fmt(current);
-
-    // Random increment: +1 every 25-90 seconds
-    function scheduleNext() {
-      var delay = 25000 + Math.random() * 65000;
-      setTimeout(function() {
-        current += 1;
-        // Animate the number briefly
-        el.style.transition = 'opacity 0.3s';
-        el.style.opacity = '0.4';
-        setTimeout(function() {
-          el.textContent = fmt(current);
-          el.style.opacity = '1';
-        }, 300);
-        scheduleNext();
-      }, delay);
-    }
-    scheduleNext();
+    el.textContent = (335).toLocaleString('en-US');
   })();
 
 </script>
