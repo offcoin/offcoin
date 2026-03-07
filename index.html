@@ -1182,8 +1182,8 @@
       ✓ &nbsp; YOU'RE IN. WE'LL BE IN TOUCH SOON.
     </div>
     <div class="urgency-row"></div>
-    <p class="waitlist-count" style="margin-bottom:16px;">JOIN <span id="counter">2,847</span> PEOPLE ALREADY ON THE LIST</p>
-    <div class="hero-earn" style="margin-bottom:60px;">Earn up to <strong>$100 / month</strong> just by being offline.</div>
+    <p class="waitlist-count" style="margin-bottom:16px;">JOIN <span id="counter">330</span> PEOPLE ALREADY ON THE LIST</p>
+    <div class="hero-earn" style="margin-bottom:60px;">Earn <strong>50 $OFF</strong> just by joining the OffCoin community.</div>
   </div>
 
   <div class="scroll-hint">
@@ -1512,24 +1512,24 @@
 
 
 <section class="live-counter-section reveal">
-  <div class="section-label" style="justify-content:center;margin-bottom:32px;">LIVE COMMUNITY STATS</div>
+  <div class="section-label" style="justify-content:center;margin-bottom:32px;">PROJECT MILESTONES</div>
   <div class="stats-row">
     <div class="stat-box">
       <div class="stat-dot"></div>
-      <div class="stat-num" id="liveHours">18,420</div>
-      <div class="stat-lbl">Hours offline</div>
+      <div class="stat-num" id="liveHours">72%</div>
+      <div class="stat-lbl">Road to Closed Beta</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-box">
       <div class="stat-dot" style="animation-delay:.6s"></div>
-      <div class="stat-num" id="liveMembers">2,847</div>
-      <div class="stat-lbl">On waitlist</div>
+      <div class="stat-num" id="liveMembers">500</div>
+      <div class="stat-lbl">Genesis Slots Available</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-box">
       <div class="stat-dot" style="animation-delay:1.2s"></div>
-      <div class="stat-num" id="liveTokens">142,000</div>
-      <div class="stat-lbl">$OFF reserved</div>
+      <div class="stat-num" id="liveTokens">+50 $OFF</div>
+      <div class="stat-lbl">Early Member Bonus</div>
     </div>
       </div>
 </div>
@@ -1770,7 +1770,8 @@
 <canvas id="leavesCanvas2" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;"></canvas>
 <section class="chart-section reveal" style="position:relative;z-index:1;">
   <div class="section-label" style="margin-bottom:40px;">$OFF TOKEN</div>
-  <h2 class="section-title" style="margin-bottom:40px;">VALUE GROWS<br><em style="color:#999;font-style:normal;">WITH THE COMMUNITY.</em></h2>
+  <h2 class="section-title" style="margin-bottom:24px;">VALUE GROWS<br><em style="color:#999;font-style:normal;">WITH THE COMMUNITY.</em></h2>
+  <p style="font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin:0 0 48px;text-align:left;">500 spots. Be early. Be part of it.</p>
   <div class="chart-wrap">
     <div class="chart-header">
       <div>
@@ -1875,7 +1876,7 @@
   });
 
   /* WAITLIST */
-  let count = 2847;
+  let count = 330;
 
   async function joinWaitlist(inputId, formId, successId) {
     const input = document.getElementById(inputId);
@@ -1939,7 +1940,7 @@
     }, step);
   }
 
-  setTimeout(() => animateCounter(document.getElementById('counter'), 2847, 2000), 1200);
+  setTimeout(() => animateCounter(document.getElementById('counter'), 330, 2000), 1200);
 
   /* SMOOTH SCROLL */
   var navCta = document.getElementById('navCta');
@@ -1967,14 +1968,14 @@
   }, 1000);
 
   /* COUNTER ANIMATION */
-  function animateVal(id, target) {
+  function animateVal(id, target, suffix) {
     const el = document.getElementById(id);
     if(!el) return;
     let current = 0;
     const step = target / 80;
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      el.textContent = Math.floor(current).toLocaleString();
+      el.textContent = Math.floor(current).toLocaleString() + (suffix || '');
       if(current >= target) clearInterval(timer);
     }, 20);
   }
@@ -1982,9 +1983,9 @@
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting && e.target.classList.contains('live-counter-section')) {
-        animateVal('liveHours', 18420);
-        animateVal('liveMembers', 2847);
-        animateVal('liveTokens', 142000);
+        animateVal('liveHours', 72, '%');
+        animateVal('liveMembers', 500);
+        document.getElementById('liveTokens').textContent = '+50 $OFF';
         counterObserver.unobserve(e.target);
       }
     });
@@ -2344,7 +2345,7 @@
 
 
   (function() {
-    var base = 2847;
+    var base = 330;
     var current = base;
     var el = document.getElementById('counter');
     if (!el) return;
