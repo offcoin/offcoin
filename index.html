@@ -1176,7 +1176,7 @@
   </h1>
 
   <p class="hero-sub">
-    Every hour offline earns you $OFF.<br>Redeem for real rewards from top brands.
+    Every hour offline earns you $OFF.<br>Redeem for real rewards.
   </p>
 
   <div id="waitlist">
@@ -1188,8 +1188,8 @@
       ✓ &nbsp; YOU'RE IN. WE'LL BE IN TOUCH SOON.
     </div>
     <div class="urgency-row"></div>
-    <div class="hero-earn" style="margin-top:16px; margin-bottom:16px;">Get <strong>50 $OFF</strong> just by joining the OffCoin community.</div>
-    <p class="waitlist-count" style="margin-bottom:60px;">JOIN <span id="counter">335</span> PEOPLE ALREADY ON THE LIST</p>
+    <div class="hero-earn" style="margin-top:16px; margin-bottom:16px;">Get <strong>50 $OFF</strong> free just for joining.</div>
+    <p class="waitlist-count" style="margin-bottom:60px;"><span id="counter">335</span> PEOPLE ALREADY IN &nbsp;·&nbsp; <span id="spots-left">165</span> LEFT</p>
   </div>
 
   <div class="scroll-hint">
@@ -1913,6 +1913,7 @@
         document.getElementById(successId).style.display = 'block';
         count++;
         const counter = document.getElementById('counter');
+        const spotsLeft = document.getElementById('spots-left');
         if (counter) {
           counter.style.transition = 'opacity 0.2s, transform 0.2s';
           counter.style.opacity = '0';
@@ -1923,6 +1924,11 @@
             counter.style.transform = 'translateY(0) scale(1)';
           }, 220);
         }
+        if (spotsLeft) {
+          setTimeout(() => {
+            spotsLeft.textContent = Math.max(0, 500 - count);
+          }, 220);
+        }
       } else {
         // Still show success to user but log error
         console.error('Sender API error:', response.status);
@@ -1930,6 +1936,7 @@
         document.getElementById(successId).style.display = 'block';
         count++;
         const counter2 = document.getElementById('counter');
+        const spotsLeft2 = document.getElementById('spots-left');
         if (counter2) {
           counter2.style.transition = 'opacity 0.2s, transform 0.2s';
           counter2.style.opacity = '0';
@@ -1938,6 +1945,11 @@
             counter2.textContent = count.toLocaleString();
             counter2.style.opacity = '1';
             counter2.style.transform = 'translateY(0) scale(1)';
+          }, 220);
+        }
+        if (spotsLeft2) {
+          setTimeout(() => {
+            spotsLeft2.textContent = Math.max(0, 500 - count);
           }, 220);
         }
       }
