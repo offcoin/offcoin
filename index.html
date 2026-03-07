@@ -1766,7 +1766,9 @@
 </section>
 
 
-<section class="chart-section reveal">
+<div id="leavesBottomWrap" style="position:relative;overflow:hidden;">
+<canvas id="leavesCanvas2" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;"></canvas>
+<section class="chart-section reveal" style="position:relative;z-index:1;">
   <div class="section-label" style="margin-bottom:40px;">$OFF TOKEN</div>
   <h2 class="section-title" style="margin-bottom:40px;">VALUE GROWS<br><em style="color:#999;font-style:normal;">WITH THE COMMUNITY.</em></h2>
   <div class="chart-wrap">
@@ -1804,10 +1806,9 @@
 </section>
 
 <!-- FINAL CTA -->
-<section class="final-cta reveal">
-  <h2 class="final-title">
-    READY TO
-    <span>GET PAID?</span>
+<section class="final-cta reveal" style="position:relative;z-index:1;">
+  <h2 class="final-title" style="white-space:nowrap;">
+    <span style="display:inline;color:#333;">T</span><span style="display:inline;background:linear-gradient(135deg,#6ab86a,#90d090);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">EARN</span><span style="display:inline;color:#333;"> IT </span><span style="display:inline;background:linear-gradient(135deg,#6ab86a,#90d090);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$OFF</span>
   </h2>
   <p class="final-sub">
     Join the waitlist. Be first when we launch.<br>
@@ -1823,6 +1824,7 @@
   </div>
   <p class="final-note">No spam. Unsubscribe anytime. Launching 2026.</p>
 </section>
+</div><!-- /leavesBottomWrap -->
 
 <!-- FOOTER -->
 <footer>
@@ -2215,6 +2217,129 @@
 
     // Start after layout settles
     setTimeout(animate, 150);
+  })();
+
+  /* LEAVES + WIND EFFECT — BOTTOM SECTION */
+  (function() {
+    const canvas = document.getElementById('leavesCanvas2');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      const wrap = document.getElementById('leavesBottomWrap');
+      canvas.width = wrap ? wrap.offsetWidth : window.innerWidth;
+      canvas.height = wrap ? wrap.offsetHeight : window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    setTimeout(resize, 200);
+
+    const streaks = Array.from({length: 22}, () => makeStreak2());
+    function makeStreak2() {
+      return {
+        x: Math.random() * (canvas.width || window.innerWidth),
+        y: Math.random() * (canvas.height || window.innerHeight),
+        len: 60 + Math.random() * 120,
+        speed: 2.5 + Math.random() * 3.5,
+        alpha: 0.04 + Math.random() * 0.07,
+        width: 0.5 + Math.random() * 1,
+        curve: (Math.random() - 0.5) * 12,
+      };
+    }
+
+    function drawStreak2(s) {
+      ctx.save();
+      ctx.globalAlpha = s.alpha;
+      const grad = ctx.createLinearGradient(s.x, s.y, s.x + s.len, s.y + s.curve);
+      grad.addColorStop(0, 'rgba(140,200,140,0)');
+      grad.addColorStop(0.3, 'rgba(140,200,140,1)');
+      grad.addColorStop(1, 'rgba(140,200,140,0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = s.width;
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.quadraticCurveTo(s.x + s.len * 0.5, s.y + s.curve * 0.5, s.x + s.len, s.y + s.curve);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    const LEAF_COUNT = 22;
+    const leaves2 = [];
+    const greens = ['#8ecf8e','#a0d890','#7bc47b','#b0e0a0','#6ab86a'];
+
+    function makeLeaf2(randomY) {
+      const W = canvas.width || window.innerWidth;
+      const H = canvas.height || window.innerHeight;
+      return {
+        x: randomY ? Math.random() * W : -20,
+        y: Math.random() * H,
+        size: 6 + Math.random() * 7,
+        angle: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.018,
+        speedX: 0.6 + Math.random() * 0.9,
+        speedY: -0.15 + Math.random() * 0.3,
+        alpha: 0.25 + Math.random() * 0.35,
+        wobble: Math.random() * Math.PI * 2,
+        wobbleSpeed: 0.02 + Math.random() * 0.02,
+        wobbleAmp: 0.4 + Math.random() * 0.6,
+        color: greens[Math.floor(Math.random() * greens.length)],
+      };
+    }
+
+    for (let i = 0; i < LEAF_COUNT; i++) leaves2.push(makeLeaf2(true));
+
+    function drawLeaf2(l) {
+      ctx.save();
+      ctx.translate(l.x, l.y);
+      ctx.rotate(l.angle);
+      ctx.globalAlpha = l.alpha;
+      ctx.fillStyle = l.color;
+      const s = l.size;
+      ctx.beginPath();
+      ctx.moveTo(0, -s);
+      ctx.bezierCurveTo( s*0.7, -s*0.4,  s*0.8,  s*0.3, 0,  s*0.6);
+      ctx.bezierCurveTo(-s*0.8,  s*0.3, -s*0.7, -s*0.4, 0, -s);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(60,120,60,0.4)';
+      ctx.lineWidth = 0.6;
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.8);
+      ctx.lineTo(0,  s * 0.5);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function animate2() {
+      const W = canvas.width || window.innerWidth;
+      const H = canvas.height || window.innerHeight;
+      ctx.clearRect(0, 0, W, H);
+
+      streaks.forEach(s => {
+        drawStreak2(s);
+        s.x += s.speed;
+        if (s.x > W + 50) {
+          s.x = -150;
+          s.y = Math.random() * H;
+          s.alpha = 0.04 + Math.random() * 0.07;
+          s.len = 60 + Math.random() * 120;
+          s.curve = (Math.random() - 0.5) * 12;
+        }
+      });
+
+      leaves2.forEach(l => {
+        l.wobble += l.wobbleSpeed;
+        l.x += l.speedX + Math.sin(l.wobble) * l.wobbleAmp;
+        l.y += l.speedY + Math.cos(l.wobble * 0.8) * (l.wobbleAmp * 0.5);
+        l.angle += l.rotSpeed;
+        drawLeaf2(l);
+        if (l.x > W + 30) {
+          Object.assign(l, makeLeaf2(false));
+        }
+      });
+
+      requestAnimationFrame(animate2);
+    }
+
+    setTimeout(animate2, 200);
   })();
 
 
