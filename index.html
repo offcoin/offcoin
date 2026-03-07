@@ -8,6 +8,21 @@
 <meta property="og:title" content="OffCoin — Get Paid To Put Down Your Phone">
 <meta property="og:description" content="Earn $OFF tokens every time you disconnect. Real rewards from Nike, Airbnb, Headspace and more.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Sender.net integration -->
+<script>
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('0b20d8f4739186')
+</script>
 <style>
   :root {
     --bg: #f8faf8;
@@ -1880,6 +1895,10 @@
       setTimeout(() => document.getElementById(inputId).style.borderColor = '', 1000);
       return;
     }
+
+    // Send email to Sender.net
+    sender('subscribe', { email: email });
+
     document.getElementById(formId).style.display = 'none';
     document.getElementById(successId).style.display = 'block';
     count++;
