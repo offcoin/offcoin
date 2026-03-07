@@ -8,21 +8,6 @@
 <meta property="og:title" content="OffCoin — Get Paid To Put Down Your Phone">
 <meta property="og:description" content="Earn $OFF tokens every time you disconnect. Real rewards from Nike, Airbnb, Headspace and more.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Sender.net integration -->
-<script>
-  (function (s, e, n, d, er) {
-    s['Sender'] = er;
-    s[er] = s[er] || function () {
-      (s[er].q = s[er].q || []).push(arguments)
-    }, s[er].l = 1 * new Date();
-    var a = e.createElement(n),
-        m = e.getElementsByTagName(n)[0];
-    a.async = 1;
-    a.src = d;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
-  sender('0b20d8f4739186')
-</script>
 <style>
   :root {
     --bg: #f8faf8;
@@ -1888,21 +1873,46 @@
   /* WAITLIST */
   let count = 2847;
 
-  function joinWaitlist(inputId, formId, successId) {
-    const email = document.getElementById(inputId).value;
+  async function joinWaitlist(inputId, formId, successId) {
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
     if (!email || !email.includes('@')) {
-      document.getElementById(inputId).style.borderColor = 'rgba(200,80,80,0.4)';
-      setTimeout(() => document.getElementById(inputId).style.borderColor = '', 1000);
+      input.style.borderColor = 'rgba(200,80,80,0.4)';
+      setTimeout(() => input.style.borderColor = '', 1000);
       return;
     }
 
-    // Send email to Sender.net
-    sender('subscribe', { email: email });
+    // Disable button to prevent double submit
+    const btn = document.getElementById(formId).querySelector('button');
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
 
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(successId).style.display = 'block';
-    count++;
-    document.getElementById('counter').textContent = count.toLocaleString();
+    try {
+      const response = await fetch('https://api.sender.net/v2/subscribers', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjk5MmUyOTI2ZDc1NTNjNDFlODdkMzc1MmQxOTM1NWJkZWQ3ZDc4MmY5ZDE5YTdmMGE5Y2FiMzFjYzNiZmVjY2YwZGUwYWE3N2FlZmY5YmIiLCJpYXQiOjE3NzI4OTA1MjMuNjAxMzM5LCJuYmYiOjE3NzI4OTA1MjMuNjAxMzQxLCJleHAiOjQ5MjY0OTA1MjMuNTk4ODQ4LCJzdWIiOiIxMDU3OTIxIiwic2NvcGVzIjpbXX0.Z50ILiRTJ4dsVd9HDsg-MV1qzwiAcyHSJcU68rEIzYCVbvJgdlMJqBN9QCLy8KB3P7MkuJ7XSMMg5MKRwCdhv04uTodm8R4KlhrV53XNaQqpebjHEyRK0mn01EbmMsCuvMldBry_Fs4lsgO8DwuOqcln_WT28Z2zpDxo0X29ZXIsCjBgZRkJLe8hOIJOZRytpwlh3r7_acvQ0LdbdxHTn90-B-4vKXyPSBHZDmQhIotJjU5sqle_hf52om9D23YnrJbY-4dd_6-QX2e2kBN2jQFBeBf64DtnrdaJSd-oS54N6oCf9Y9YVjWAkA6wMP_peMwTaOyohZKd_7ILzkP6bI1sgFyjwKfw7gMUr90p6IxvAfEDQ2UGgmUQiOfuND4U5RjnKZ9v9uba3iSypl8DdO6RnkcqgL3ms2iivdOauCSOgirnQgz3anly8ptQ3t0-1Tv03Do6w6zU0vjHBswlZbCZHJS0G6E25Y_Dx5dEgU6WdsQY70kkHJv2IiPCv1vP9tc1rKZK-53_POLuumezioGzLiITUiqLui-2fYvh44GVKW7zqgWWaEgmK_tzZGx34D6OPezqEuFa78wHOQutNTPGV7IvZEEynVXIt0YaeqUB1GfrURGUQiynF7y5pDOqpuT-WIfDV9nfsiDTW0HYzv9LxwxGY4mHi54TJWdcLOQ',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+      });
+
+      if (response.ok || response.status === 200 || response.status === 201) {
+        document.getElementById(formId).style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+        count++;
+        const counter = document.getElementById('counter');
+        if (counter) counter.textContent = count.toLocaleString();
+      } else {
+        // Still show success to user but log error
+        console.error('Sender API error:', response.status);
+        document.getElementById(formId).style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      }
+    } catch (err) {
+      console.error('Network error:', err);
+      if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+    }
   }
 
   /* SCROLL REVEAL */
