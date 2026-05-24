@@ -736,10 +736,6 @@
     .testimonial-card{width:260px;}
   }
 
-  /* POINT CHART */
-  .chart-section{position:relative;z-index:1;padding:0 48px 100px;max-width:1100px;margin:0 auto;}
-  .chart-wrap{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:20px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,0.04);}
-  .chart-labels{display:flex;justify-content:space-between;margin-top:12px;font-size:9px;color:#ccc;letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;white-space:nowrap;}
 
 
   /* PARTNER CARD REDESIGN */
@@ -1748,36 +1744,6 @@
 
 <div id="leavesBottomWrap" style="position:relative;overflow:hidden;">
 <canvas id="leavesCanvas2" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;"></canvas>
-<section class="chart-section reveal" style="position:relative;z-index:1;">
-  <div class="section-label" style="margin-bottom:40px;">$OFF POINT</div>
-  <h2 class="section-title" style="margin-bottom:24px;">VALUE GROWS<br><em style="color:#999;font-style:normal;">WITH THE COMMUNITY.</em></h2>
-  <p style="font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin:0 0 48px;text-align:left;white-space:nowrap;">500 spots. Be early. Be part of it.</p>
-  <div class="chart-wrap">
-    <div style="width:100%;height:160px;position:relative;">
-      <svg id="tokenChart" width="100%" height="160" viewBox="0 0 900 160" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#85cc85" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="#aaa" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#9dd49d"/>
-            <stop offset="100%" stop-color="#5aaa5a"/>
-          </linearGradient>
-        </defs>
-        <line x1="0" y1="40" x2="900" y2="40" stroke="#f0f0f0" stroke-width="1"/>
-        <line x1="0" y1="80" x2="900" y2="80" stroke="#f0f0f0" stroke-width="1"/>
-        <line x1="0" y1="120" x2="900" y2="120" stroke="#f0f0f0" stroke-width="1"/>
-        <path id="chartArea" fill="url(#chartGrad)"/>
-        <path id="chartLine" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle id="chartDot" r="5" fill="#72c272" filter="drop-shadow(0 0 4px rgba(74,158,74,0.5))"/>
-      </svg>
-    </div>
-    <div class="chart-labels">
-      <span>LAUNCH</span><span>1K USERS</span><span>10K USERS</span><span>50K USERS</span><span>100K USERS</span>
-    </div>
-  </div>
-</section>
 
 <!-- FINAL CTA -->
 <section class="final-cta reveal" style="position:relative;z-index:1;">
@@ -2001,59 +1967,6 @@
   }, {threshold: 0.3});
   document.querySelectorAll('.live-counter-section').forEach(el => counterObserver.observe(el));
 
-  /* POINT CHART */
-  const chartPoints = [
-    [0, 150], [100, 148], [200, 144], [280, 138], [360, 128],
-    [440, 112], [520, 90], [620, 65], [720, 38], [820, 18], [900, 8]
-  ];
-
-  function buildPath(points) {
-    let d = `M${points[0][0]},${points[0][1]}`;
-    for(let i=1;i<points.length;i++) {
-      const px = points[i-1][0], py = points[i-1][1];
-      const cx = points[i][0], cy = points[i][1];
-      const mx = (px+cx)/2;
-      d += ` C${mx},${py} ${mx},${cy} ${cx},${cy}`;
-    }
-    return d;
-  }
-
-  const linePath = buildPath(chartPoints);
-  const last = chartPoints[chartPoints.length-1];
-  const areaPath = linePath + ` L${last[0]},160 L0,160 Z`;
-
-  const chartObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        const line = document.getElementById('chartLine');
-        const area = document.getElementById('chartArea');
-        const dot  = document.getElementById('chartDot');
-        if(!line) return;
-        line.setAttribute('d', linePath);
-        area.setAttribute('d', areaPath);
-
-        // Animate line draw
-        const len = line.getTotalLength();
-        line.style.strokeDasharray = len;
-        line.style.strokeDashoffset = len;
-        line.style.transition = 'stroke-dashoffset 2s ease';
-        setTimeout(() => { line.style.strokeDashoffset = 0; }, 100);
-
-        // Animate dot along path
-        let t = 0;
-        const dotAnim = setInterval(() => {
-          t = Math.min(t + 0.012, 1);
-          const pt = line.getPointAtLength(t * len);
-          dot.setAttribute('cx', pt.x);
-          dot.setAttribute('cy', pt.y);
-          if(t >= 1) clearInterval(dotAnim);
-        }, 20);
-
-        chartObserver.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.3});
-  document.querySelectorAll('.chart-section').forEach(el => chartObserver.observe(el));
 
 
         /* CAROUSEL — native scroll */
