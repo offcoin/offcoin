@@ -736,13 +736,9 @@
     .testimonial-card{width:260px;}
   }
 
-  /* TOKEN CHART */
+  /* POINT CHART */
   .chart-section{position:relative;z-index:1;padding:0 48px 100px;max-width:1100px;margin:0 auto;}
   .chart-wrap{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:20px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,0.04);}
-  .chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;}
-  .chart-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#333;letter-spacing:2px;line-height:1;}
-  .chart-change{font-size:12px;color:#aaa;letter-spacing:1px;margin-top:4px;font-family:'DM Mono',monospace;}
-  .chart-tag{background:#f5f5f5;border:1px solid #eee;border-radius:20px;padding:8px 16px;font-size:9px;color:#bbb;letter-spacing:2px;text-transform:uppercase;}
   .chart-labels{display:flex;justify-content:space-between;margin-top:12px;font-size:9px;color:#ccc;letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;white-space:nowrap;}
 
 
@@ -1219,7 +1215,7 @@
         </div>
       </div>
 
-      <!-- TOKENS EARNED -->
+      <!-- POINTS EARNED -->
       <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#92dd92;letter-spacing:3px;filter:drop-shadow(0 0 10px rgba(111,207,111,0.5));line-height:1;" id="mockupTokens">0.077</div>
       <div style="font-size:7px;color:rgba(255,255,255,0.35);letter-spacing:2px;font-family:'DM Mono',monospace;text-transform:uppercase;margin-bottom:10px;">$OFF EARNED THIS SESSION</div>
 
@@ -1488,7 +1484,7 @@
       <div class="g-card-body">
         <p class="g-card-num">03</p>
         <p class="g-card-title">SPEND ON<br>REAL REWARDS</p>
-        <p class="g-card-desc">Redeem $OFF tokens for real-world rewards from our brand partners.</p>
+        <p class="g-card-desc">Redeem $OFF points for real-world rewards from our brand partners.</p>
       </div>
     </div>
 
@@ -1692,7 +1688,7 @@
 
       <div class="testimonial-card">
         <span class="testimonial-quote">"</span>
-        <p class="testimonial-text">I stopped doom-scrolling at lunch. Now I actually eat. Lost 3kg, feel human again. The tokens are a bonus.</p>
+        <p class="testimonial-text">I stopped doom-scrolling at lunch. Now I actually eat. Lost 3kg, feel human again. The points are a bonus.</p>
         <div class="testimonial-footer">
           <div class="testimonial-avatar">J</div>
           <div><div class="testimonial-name">JAN W.</div><div class="testimonial-role">Kraków · 21-day streak</div><div class="testimonial-stars">★★★★★</div></div>
@@ -1753,17 +1749,10 @@
 <div id="leavesBottomWrap" style="position:relative;overflow:hidden;">
 <canvas id="leavesCanvas2" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;"></canvas>
 <section class="chart-section reveal" style="position:relative;z-index:1;">
-  <div class="section-label" style="margin-bottom:40px;">$OFF TOKEN</div>
+  <div class="section-label" style="margin-bottom:40px;">$OFF POINT</div>
   <h2 class="section-title" style="margin-bottom:24px;">VALUE GROWS<br><em style="color:#999;font-style:normal;">WITH THE COMMUNITY.</em></h2>
   <p style="font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin:0 0 48px;text-align:left;white-space:nowrap;">500 spots. Be early. Be part of it.</p>
   <div class="chart-wrap">
-    <div class="chart-header">
-      <div>
-        <div class="chart-price">$OFF <span style="font-size:24px;color:#bbb;">TOKEN</span></div>
-        <div class="chart-change">Token value grows as the community scales &nbsp;↑</div>
-      </div>
-      <div class="chart-tag">ILLUSTRATIVE — TOKEN LAUNCHING SOON</div>
-    </div>
     <div style="width:100%;height:160px;position:relative;">
       <svg id="tokenChart" width="100%" height="160" viewBox="0 0 900 160" preserveAspectRatio="none">
         <defs>
@@ -2012,7 +2001,7 @@
   }, {threshold: 0.3});
   document.querySelectorAll('.live-counter-section').forEach(el => counterObserver.observe(el));
 
-  /* TOKEN CHART */
+  /* POINT CHART */
   const chartPoints = [
     [0, 150], [100, 148], [200, 144], [280, 138], [360, 128],
     [440, 112], [520, 90], [620, 65], [720, 38], [820, 18], [900, 8]
