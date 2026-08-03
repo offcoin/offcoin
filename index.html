@@ -50,15 +50,16 @@
   }
 
   body {
-    /* Baza jest CHLODNA, nie biala — poprzednie #f8faf8 mialo zielonkawy
-       odcien (g > r,b), a granat na 5% byl na nim niewidoczny. Stad wychodzila
-       szarosc zamiast blekitu. Trzy miekkie warstwy daja glebie zamiast
-       plaskiej plaszczyzny. Dalej jasno, ale juz niebiesko. */
+    /* Baza jest BIALA. Blekit tylko przeswituje w kilku miejscach — dwa
+       miekkie rozblyski w gornych rogach i jeden nisko. Kazdy gasnie szybko
+       (transparent juz przy 40-45%), wiec wiekszosc strony zostaje czysta.
+       Poprzednia wersja kladla gradienty na cala szerokosc i wychodzila
+       z tego jednolita niebieska plachta zamiast przeswitow. */
     background:
-      radial-gradient(ellipse 100% 55% at 15% 0%,   rgba(46,77,120,0.16) 0%, transparent 55%),
-      radial-gradient(ellipse 90%  50% at 85% 25%,  rgba(30,55,90,0.10)  0%, transparent 60%),
-      radial-gradient(ellipse 120% 60% at 50% 100%, rgba(17,41,74,0.14)  0%, transparent 62%),
-      linear-gradient(180deg, #eef3fa 0%, #e9eff8 45%, #eef3fa 100%);
+      radial-gradient(ellipse 55% 40% at 8% 2%,   rgba(60,100,160,0.13) 0%, transparent 45%),
+      radial-gradient(ellipse 45% 35% at 95% 12%, rgba(70,110,170,0.10) 0%, transparent 42%),
+      radial-gradient(ellipse 70% 30% at 50% 99%, rgba(40,75,130,0.09)  0%, transparent 48%),
+      #fcfdff;
     background-attachment: fixed;
     color: #1a212a;
     font-family: 'DM Mono', monospace;
@@ -481,7 +482,7 @@
     /* Jedyne ciemne pasmo na stronie. Tresc jest tu krotka i mocna, wiec
        granat wzmacnia ja zamiast przytlaczac — a strona dostaje oddech
        miedzy jasnymi sekcjami. */
-    background: linear-gradient(150deg, #dfe8f5 0%, #d3dff0 55%, #c9d8ed 100%);
+    background: linear-gradient(150deg, rgba(226,236,249,0.85) 0%, rgba(213,227,245,0.9) 100%);
     border-radius: 28px;
     margin: 40px 24px;
     border: 1px solid rgba(17,41,74,0.10);
@@ -2040,7 +2041,7 @@
     /* ── LEAVES ── */
     const LEAF_COUNT = 22;
     const leaves = [];
-    const navies = ['#2e4d78','#1e375a','#3b547a','#4a6690','#11294a'];
+    const leafGreens = ['#8ecf8e','#a0d890','#7bc47b','#b0e0a0','#6ab86a'];
 
     function makeLeaf(randomY) {
       const W = canvas.width || window.innerWidth;
@@ -2057,7 +2058,7 @@
         wobble: Math.random() * Math.PI * 2,
         wobbleSpeed: 0.02 + Math.random() * 0.02,
         wobbleAmp: 0.4 + Math.random() * 0.6,
-        color: navies[Math.floor(Math.random() * navies.length)],
+        color: leafGreens[Math.floor(Math.random() * leafGreens.length)],
       };
     }
 
@@ -2076,7 +2077,7 @@
       ctx.bezierCurveTo(-s*0.8,  s*0.3, -s*0.7, -s*0.4, 0, -s);
       ctx.fill();
       // vein
-      ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+      ctx.strokeStyle = 'rgba(60,120,60,0.4)';
       ctx.lineWidth = 0.6;
       ctx.beginPath();
       ctx.moveTo(0, -s * 0.8);
@@ -2169,7 +2170,7 @@
 
     const LEAF_COUNT = 22;
     const leaves2 = [];
-    const navies = ['#2e4d78','#1e375a','#3b547a','#4a6690','#11294a'];
+    const leafGreens = ['#8ecf8e','#a0d890','#7bc47b','#b0e0a0','#6ab86a'];
 
     function makeLeaf2(randomY) {
       const W = canvas.width || window.innerWidth;
@@ -2186,7 +2187,7 @@
         wobble: Math.random() * Math.PI * 2,
         wobbleSpeed: 0.02 + Math.random() * 0.02,
         wobbleAmp: 0.4 + Math.random() * 0.6,
-        color: navies[Math.floor(Math.random() * navies.length)],
+        color: leafGreens[Math.floor(Math.random() * leafGreens.length)],
       };
     }
 
@@ -2204,7 +2205,7 @@
       ctx.bezierCurveTo( s*0.7, -s*0.4,  s*0.8,  s*0.3, 0,  s*0.6);
       ctx.bezierCurveTo(-s*0.8,  s*0.3, -s*0.7, -s*0.4, 0, -s);
       ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+      ctx.strokeStyle = 'rgba(60,120,60,0.4)';
       ctx.lineWidth = 0.6;
       ctx.beginPath();
       ctx.moveTo(0, -s * 0.8);
