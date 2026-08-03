@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OffCoin — Get Paid To Put Down Your Phone</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preload" as="image" href="/logo-mark.png">
+<link rel="preload" as="image" href="/wordmark.png">
 <meta name="description" content="OffCoin rewards you for finishing offline sessions — alone or in rooms that start every 15 minutes. Join the movement.">
 <meta property="og:title" content="OffCoin — Get Rewarded For Putting Down Your Phone">
 <meta property="og:description" content="Rooms open every 15 minutes. Put your phone down at the same second as everyone else, finish the session, open a box. Join the waitlist.">
@@ -50,16 +53,14 @@
   }
 
   body {
-    /* Baza jest BIALA. Blekit tylko przeswituje w kilku miejscach — dwa
-       miekkie rozblyski w gornych rogach i jeden nisko. Kazdy gasnie szybko
-       (transparent juz przy 40-45%), wiec wiekszosc strony zostaje czysta.
-       Poprzednia wersja kladla gradienty na cala szerokosc i wychodzila
-       z tego jednolita niebieska plachta zamiast przeswitow. */
+    /* Czysta biel. Blekit rozlany na duzej powierzchni czytal sie jako
+       szarosc, wiec zostaje tylko jako trzy poswiaty przy samych krawedziach —
+       widac go katem oka, nie zabiera stronie jasnosci. */
     background:
-      radial-gradient(ellipse 55% 40% at 8% 2%,   rgba(60,100,160,0.13) 0%, transparent 45%),
-      radial-gradient(ellipse 45% 35% at 95% 12%, rgba(70,110,170,0.10) 0%, transparent 42%),
-      radial-gradient(ellipse 70% 30% at 50% 99%, rgba(40,75,130,0.09)  0%, transparent 48%),
-      #fcfdff;
+      radial-gradient(ellipse 48% 32% at 4% 0%,    rgba(72,118,182,0.11) 0%, transparent 42%),
+      radial-gradient(ellipse 40% 28% at 99% 10%,  rgba(80,125,190,0.09) 0%, transparent 40%),
+      radial-gradient(ellipse 65% 22% at 50% 100%, rgba(45,82,140,0.08)  0%, transparent 45%),
+      #ffffff;
     background-attachment: fixed;
     color: #1a212a;
     font-family: 'DM Mono', monospace;
@@ -238,8 +239,8 @@
     margin: 5px 5px 5px 0;
     /* Byl plaski szary #888. Glowne wezwanie do dzialania powinno miec kolor
        marki, a nie kolor wylaczonego elementu. */
-    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-900) 100%);
-    box-shadow: 0 3px 12px rgba(17,41,74,0.18);
+    background: linear-gradient(135deg, #5387c2 0%, #2f5b93 40%, #1b3a68 72%, #12294a 100%);
+    box-shadow: 0 4px 16px rgba(23,50,90,0.28), inset 0 1px 0 rgba(255,255,255,0.22);
     border: none; border-radius: 50px;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
@@ -482,11 +483,14 @@
     /* Jedyne ciemne pasmo na stronie. Tresc jest tu krotka i mocna, wiec
        granat wzmacnia ja zamiast przytlaczac — a strona dostaje oddech
        miedzy jasnymi sekcjami. */
-    background: linear-gradient(150deg, rgba(226,236,249,0.85) 0%, rgba(213,227,245,0.9) 100%);
-    border-radius: 28px;
-    margin: 40px 24px;
-    border: 1px solid rgba(17,41,74,0.10);
-    box-shadow: 0 10px 40px rgba(17,41,74,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+    /* Bez ramki i bez ostrej krawedzi. Poswiata rozplywa sie w tle zamiast
+       tworzyc pudelko — maska wygasza ja przy brzegach, wiec nie widac,
+       gdzie sekcja sie konczy. */
+    background: radial-gradient(ellipse 75% 70% at 50% 45%,
+                rgba(196,216,242,0.75) 0%,
+                rgba(214,229,247,0.45) 45%,
+                transparent 78%);
+    margin: 30px 0;
   }
 
   .manifesto-bg {
@@ -548,8 +552,8 @@
   .final-input:focus { border-color: rgba(74,113,158,0.4); }
   .final-btn {
     padding: 18px 28px;
-    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-900) 100%);
-    box-shadow: 0 3px 14px rgba(17,41,74,0.16);
+    background: linear-gradient(135deg, #5387c2 0%, #2f5b93 40%, #1b3a68 72%, #12294a 100%);
+    box-shadow: 0 5px 18px rgba(23,50,90,0.26), inset 0 1px 0 rgba(255,255,255,0.22);
     border: none; border-radius: 0 14px 14px 0;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 16px; letter-spacing: 3px;
@@ -1195,7 +1199,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo" aria-label="OffCoin">
-    <img src="/logo-mark.png" alt="OffCoin" class="nav-logo-mark">
+    <img src="/logo-mark.png" alt="OffCoin" class="nav-logo-mark" width="38" height="38" fetchpriority="high" decoding="async">
   </a>
   <a href="#waitlist" class="nav-cta" id="navCta">JOIN WAITLIST</a>
 </nav>
@@ -1215,7 +1219,7 @@
   </div>
 
   <div style="margin-top:90px;margin-bottom:48px;opacity:0;animation:fadeUp 0.8s ease forwards 0.1s;display:flex;justify-content:center;">
-    <img src="/wordmark.png" alt="OffCoin" style="height:48px;">
+    <img src="/wordmark.png" width="153" height="48" fetchpriority="high" decoding="async" alt="OffCoin" style="height:48px;width:auto;">
   </div>
   <div class="hero-eyebrow">
     <div class="eyebrow-dot"></div>
@@ -1271,7 +1275,7 @@
       </div>
 
       <!-- SKRZYNKA -->
-      <img src="/diamond.png" alt="" style="width:46px;height:46px;object-fit:contain;margin-bottom:2px;filter:drop-shadow(0 3px 8px rgba(169,220,240,0.45));">
+      <img src="/diamond.png" alt="" width="46" height="46" decoding="async" style="width:46px;height:46px;object-fit:contain;margin-bottom:2px;filter:drop-shadow(0 3px 8px rgba(169,220,240,0.45));">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#a9dcf0;letter-spacing:2px;filter:drop-shadow(0 0 10px rgba(111,156,207,0.5));line-height:1;" id="mockupTokens">DIAMOND BOX</div>
       <div style="font-size:7px;color:rgba(255,255,255,0.35);letter-spacing:2px;font-family:'DM Mono',monospace;text-transform:uppercase;margin-bottom:10px;">READY TO OPEN</div>
 
@@ -1810,7 +1814,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <img src="/logo-mark.png" alt="OffCoin" class="footer-logo-mark">
+    <img src="/logo-mark.png" alt="OffCoin" class="footer-logo-mark" width="30" height="30" loading="lazy" decoding="async">
   </div>
   <div class="footer-links">
     
