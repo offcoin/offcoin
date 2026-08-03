@@ -9,32 +9,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
+  /* Tresc ta sama czcionka co opisy na stronie glownej (.g-card-desc).
+     DM Mono zostaje tam, gdzie ma sens: naglowki pomocnicze i dane. */
   body {
-    background:#f8faf8; color:#1a2a1a; font-family:'DM Mono',monospace;
-    font-size:14px; line-height:1.9; letter-spacing:0.2px; padding:0 24px 120px;
+    background:#f8faf8; color:#3a3a3a;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:15px; line-height:1.75; padding:0 24px 120px;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap { max-width:780px; margin:0 auto; }
+  .wrap { max-width:720px; margin:0 auto; }
   header { padding:48px 0 8px; }
-  .back { font-size:11px; letter-spacing:2px; color:#85cc85; text-decoration:none; text-transform:uppercase; }
+  .back {
+    font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px;
+    color:#85cc85; text-decoration:none; text-transform:uppercase;
+  }
   .back:hover { color:#5ab55a; }
-  h1 { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:1px; line-height:1; margin:28px 0 6px; }
-  .updated { font-size:11px; color:#999; letter-spacing:1.5px; text-transform:uppercase; }
-  h2 { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px;
-       margin:44px 0 10px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.07); }
-  p { margin:14px 0; color:#333; }
-  strong { font-weight:500; color:#1a2a1a; }
-  code { background:rgba(133,204,133,0.15); padding:1px 5px; border-radius:3px; font-size:13px; }
+  h1 {
+    font-family:'Bebas Neue',sans-serif; font-size:54px; letter-spacing:1px;
+    line-height:1; margin:28px 0 8px; color:#1a2a1a;
+  }
+  .updated {
+    font-family:'DM Mono',monospace; font-size:11px; color:#999;
+    letter-spacing:1.5px; text-transform:uppercase;
+  }
+  h2 {
+    font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px;
+    margin:46px 0 12px; padding-top:22px; color:#1a2a1a;
+    border-top:1px solid rgba(0,0,0,0.07);
+  }
+  p { margin:15px 0; }
+  strong { font-weight:600; color:#1a2a1a; }
+  code {
+    font-family:'DM Mono',monospace; background:rgba(133,204,133,0.15);
+    padding:1px 5px; border-radius:3px; font-size:13px;
+  }
   a { color:#5ab55a; }
-  table { border-collapse:collapse; width:100%; margin:18px 0; font-size:12.5px; }
-  th,td { text-align:left; padding:10px 12px; border-bottom:1px solid rgba(0,0,0,0.07); vertical-align:top; }
-  th { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#999; font-weight:400; }
+  table { border-collapse:collapse; width:100%; margin:20px 0; font-size:14px; }
+  th,td { text-align:left; padding:11px 12px; border-bottom:1px solid rgba(0,0,0,0.07); vertical-align:top; }
+  th {
+    font-family:'DM Mono',monospace; font-size:10px; letter-spacing:1.5px;
+    text-transform:uppercase; color:#999; font-weight:400;
+  }
   td { color:#555; }
-  .box { border-left:2px solid #85cc85; padding:14px 18px 14px 20px; margin:26px 0;
-         background:rgba(133,204,133,0.05); border-radius:0 6px 6px 0; }
-  .box.warn { border-left-color:#e0a03a; background:rgba(224,160,58,0.06); }
-  footer { margin-top:70px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.07);
-           font-size:11px; color:#999; letter-spacing:1px; }
-  @media (max-width:600px) { h1 { font-size:38px; } body { font-size:13px; } }
+  .box {
+    border-left:2px solid #85cc85; padding:16px 20px; margin:28px 0;
+    background:rgba(133,204,133,0.06); border-radius:0 6px 6px 0;
+  }
+  .box.warn { border-left-color:#e0a03a; background:rgba(224,160,58,0.07); }
+  footer {
+    margin-top:72px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.07);
+    font-family:'DM Mono',monospace; font-size:11px; color:#999; letter-spacing:1px;
+  }
+  @media (max-width:600px) { h1 { font-size:40px; } body { font-size:14.5px; } }
 </style>
 
 </head>
