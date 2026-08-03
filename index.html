@@ -5,7 +5,9 @@
 <meta name="google-site-verification" content="DE5QK3cBOUledXNruox2WoqgQlUBswhmJddr8Yq-0rI" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OffCoin — Get Paid To Put Down Your Phone</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preload" as="image" href="/logo-mark.png">
 <link rel="preload" as="image" href="/wordmark.png">
@@ -239,7 +241,7 @@
     margin: 5px 5px 5px 0;
     /* Byl plaski szary #888. Glowne wezwanie do dzialania powinno miec kolor
        marki, a nie kolor wylaczonego elementu. */
-    background: linear-gradient(135deg, #5387c2 0%, #2f5b93 40%, #1b3a68 72%, #12294a 100%);
+    background: linear-gradient(135deg, #6b9fd4 0%, #4176ac 42%, #2b558a 75%, #1e4270 100%);
     box-shadow: 0 4px 16px rgba(23,50,90,0.28), inset 0 1px 0 rgba(255,255,255,0.22);
     border: none; border-radius: 50px;
     font-family: 'Bebas Neue', sans-serif;
@@ -248,7 +250,12 @@
     transition: all 0.2s; white-space: nowrap;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
-  .waitlist-btn:hover { background: #666; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+  .waitlist-btn:hover {
+    /* Gradient ZOSTAJE. Wczesniej stalo tu 'background: #666', czyli plaska
+       szarosc nadpisujaca caly gradient — przycisk gasl przy najechaniu. */
+    filter: brightness(1.08);
+    box-shadow: 0 6px 22px rgba(43,85,138,0.34), inset 0 1px 0 rgba(255,255,255,0.28);
+  }
 
   .waitlist-count {
     margin-top: 16px;
@@ -483,13 +490,8 @@
     /* Jedyne ciemne pasmo na stronie. Tresc jest tu krotka i mocna, wiec
        granat wzmacnia ja zamiast przytlaczac — a strona dostaje oddech
        miedzy jasnymi sekcjami. */
-    /* Bez ramki i bez ostrej krawedzi. Poswiata rozplywa sie w tle zamiast
-       tworzyc pudelko — maska wygasza ja przy brzegach, wiec nie widac,
-       gdzie sekcja sie konczy. */
-    background: radial-gradient(ellipse 75% 70% at 50% 45%,
-                rgba(196,216,242,0.75) 0%,
-                rgba(214,229,247,0.45) 45%,
-                transparent 78%);
+    /* Bez tla. Kazda proba podlozenia tu poswiaty konczyla sie plama —
+       ta sekcja to sama typografia i tak jest najczysciej. */
     margin: 30px 0;
   }
 
@@ -552,7 +554,7 @@
   .final-input:focus { border-color: rgba(74,113,158,0.4); }
   .final-btn {
     padding: 18px 28px;
-    background: linear-gradient(135deg, #5387c2 0%, #2f5b93 40%, #1b3a68 72%, #12294a 100%);
+    background: linear-gradient(135deg, #6b9fd4 0%, #4176ac 42%, #2b558a 75%, #1e4270 100%);
     box-shadow: 0 5px 18px rgba(23,50,90,0.26), inset 0 1px 0 rgba(255,255,255,0.22);
     border: none; border-radius: 0 14px 14px 0;
     font-family: 'Bebas Neue', sans-serif;
@@ -561,7 +563,7 @@
     transition: all 0.2s; white-space: nowrap;
     box-shadow: 0 0 30px rgba(74,113,158,0.2);
   }
-  .final-btn:hover { filter: brightness(1.1); box-shadow: 0 0 50px rgba(74,113,158,0.35); }
+  .final-btn:hover { filter: brightness(1.08); box-shadow: 0 6px 26px rgba(43,85,138,0.32), inset 0 1px 0 rgba(255,255,255,0.28); }
 
   .final-note {
     font-size: 10px; color: #bbb; letter-spacing: 1.5px; text-transform: uppercase;
