@@ -50,12 +50,15 @@
   }
 
   body {
-    /* Dwa bardzo slabe rozblyski granatu — u gory i przy dole — zamiast
-       plaskiej bieli. Strona zostaje jasna, ale przestaje byc pusta. */
+    /* Baza jest CHLODNA, nie biala — poprzednie #f8faf8 mialo zielonkawy
+       odcien (g > r,b), a granat na 5% byl na nim niewidoczny. Stad wychodzila
+       szarosc zamiast blekitu. Trzy miekkie warstwy daja glebie zamiast
+       plaskiej plaszczyzny. Dalej jasno, ale juz niebiesko. */
     background:
-      radial-gradient(ellipse 130% 75% at 50% -12%, rgba(17,41,74,0.055) 0%, transparent 62%),
-      radial-gradient(ellipse 110% 55% at 50% 110%, rgba(17,41,74,0.045) 0%, transparent 68%),
-      #f8faf8;
+      radial-gradient(ellipse 100% 55% at 15% 0%,   rgba(46,77,120,0.16) 0%, transparent 55%),
+      radial-gradient(ellipse 90%  50% at 85% 25%,  rgba(30,55,90,0.10)  0%, transparent 60%),
+      radial-gradient(ellipse 120% 60% at 50% 100%, rgba(17,41,74,0.14)  0%, transparent 62%),
+      linear-gradient(180deg, #eef3fa 0%, #e9eff8 45%, #eef3fa 100%);
     background-attachment: fixed;
     color: #1a212a;
     font-family: 'DM Mono', monospace;
@@ -478,16 +481,17 @@
     /* Jedyne ciemne pasmo na stronie. Tresc jest tu krotka i mocna, wiec
        granat wzmacnia ja zamiast przytlaczac — a strona dostaje oddech
        miedzy jasnymi sekcjami. */
-    background: linear-gradient(165deg, rgba(23,50,90,0.055) 0%, rgba(17,41,74,0.085) 100%);
+    background: linear-gradient(150deg, #dfe8f5 0%, #d3dff0 55%, #c9d8ed 100%);
     border-radius: 28px;
     margin: 40px 24px;
-    border: 1px solid rgba(17,41,74,0.07);
+    border: 1px solid rgba(17,41,74,0.10);
+    box-shadow: 0 10px 40px rgba(17,41,74,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
   .manifesto-bg {
     position: absolute; inset: 0;
     /* Miekka poswiata od gory, taka sama jak na renderze logo. */
-    background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(17,41,74,0.05) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 45% at 50% 0%, rgba(255,255,255,0.55) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -495,7 +499,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(38px, 6.5vw, 80px);
     letter-spacing: 2px; line-height: 1.25;
-    color: rgba(17,41,74,0.13);
+    color: rgba(17,41,74,0.20);
     max-width: 900px; margin: 0 auto;
     position: relative; z-index: 1;
     text-align: center; padding: 0 16px;
